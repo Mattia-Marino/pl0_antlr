@@ -1,0 +1,68 @@
+plugins {
+	id 'java'
+	id 'antlr'
+	id 'application'
+}
+
+group = 'it.unisannio.studenti'
+version = '1.0-SNAPSHOT'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+        implementation 'com.opencsv:opencsv:5.7.1'
+
+	antlr 'org.antlr:antlr4:4.13.2'
+	implementation 'org.antlr:antlr4-runtime:4.13.2'
+
+	runtimeOnly 'org.antlr:antlr4:4.13.2'
+}
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+
+// ANTLR Configuration
+sourceSets {
+	main {
+		antlr {
+			// .g4 file goes here
+			srcDirs = ['src/main/antlr'] 
+		}
+		java {
+			srcDirs += files(project.buildDir.toString() + "/generated-src/antlr/main")
+		}
+	}
+}
+
+generateGrammarSource {
+	source = source.filter { it.name.endsWith('.g4') }
+	
+	arguments += [
+		"-package", "grammar", 
+		"-visitor", 
+		"-listener", 
+		"-encoding", "UTF-8"
+	]
+}
+
+tasks.named('compileJava') {
+	dependsOn tasks.named('generateGrammarSource')
+}
+
+application {
+	mainClass = 'it.unisannio.studenti.App' 
+}
+
+tasks.named('run') {
+	workingDir project.rootDir 
+}

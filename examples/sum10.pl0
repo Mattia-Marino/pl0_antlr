@@ -1,0 +1,18 @@
+CONST max = 10;
+VAR i, sum, x;
+PROCEDURE addToSum;
+BEGIN
+    sum := sum + x;
+END;
+BEGIN
+    sum := 0;
+    i := 1;
+    WHILE i <= max DO
+    BEGIN
+        READ(x);
+        IF x > 0 THEN
+            CALL addToSum;
+        i := i + 1;
+    END;
+    WRITE(sum);
+END.

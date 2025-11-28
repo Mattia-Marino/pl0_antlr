@@ -1,0 +1,84 @@
+# -----------------------------
+# Gradle / build artifacts
+# -----------------------------
+.gradle/
+#/gradle-cache
+# Gradle build folders
+build/
+**/build/
+
+# Gradle wrapper caches and temporary files
+.gradle/
+gradle-app.setting
+
+# Distribution artifacts
+libs/
+distributions/
+*.jar
+*.war
+*.ear
+
+# -----------------------------
+# Project-specific generated files
+# -----------------------------
+generated/
+generated-src/
+**/generated/
+**/generated-src/
+
+# ANTLR / parser artifacts and token files
+app/bin/
+app/distributions/
+.antlr/
+
+# -----------------------------
+# IDEs and editors
+# -----------------------------
+.idea/
+*.iml
+.vscode/
+*.code-workspace
+.project
+.classpath
+.settings/
+
+# -----------------------------
+# Operating system files
+# -----------------------------
+.DS_Store
+Thumbs.db
+
+# -----------------------------
+# Logs, temp files, and editor swap files
+# -----------------------------
+*.log
+*.tmp
+*.temp
+*.swp
+*~
+hs_err_pid*
+
+# -----------------------------
+# Test files
+# -----------------------------
+*.pl0
+
+# -----------------------------
+# Misc
+# -----------------------------
+node_modules/
+env/
+venv/
+/.env
+local.properties
+
+
+
+# -----------------------------
+# Include the examples
+# -----------------------------
+!examples/**/*.pl0
+
+# Exclude any generated assembly or json files
+*.json
+*.s
